@@ -1,0 +1,49 @@
+<div class="container" >
+    <br>
+    <div class="row" *ngIf="disabled">
+        <p >la parola da indovinare ha " {{numWord}} " lettere e inizia con la lettera  " {{tmp[0]}} "  e termina con la lettera  " {{lastWord}} "</p>
+        
+    </div>
+    <br><br>
+    <div class="row">
+        
+     <label for="">Indovina la parola</label>
+         <input type="text"     style="width: 50%;" class="form-control" [disabled]="control" [(ngModel)]="enterWord">
+        
+        </div>
+    <br><br>
+
+   <div class="row">
+       <div class="col-md-6">
+         <button ejs-button [disabled]="disabled" (click)="onSelect()">Avvia giocco</button> 
+       </div>
+       <div class="col-md-6">
+         <button ejs-button [disabled]="control" (click)="getSolution()">Test Solution</button> 
+       </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+        <h5 style="color: red;">Num Tentativi: {{tentativi}} / 7</h5>
+    </div>
+       <div class="col-md-6">
+           <h5>Punti: {{punti}}</h5>
+           <h5>Max Punti: 30</h5>
+       </div>
+   </div>
+   <div class="row">
+       <div class="col-md-12">
+        <app-figure [pointFigure]="pointFigure"></app-figure>
+       </div>
+       <div class="col-md-12" *ngIf="pointFigure === 7">
+           <p>Lose...</p>
+        <button class="btn btn-primary" (click)="reload()">Try Again</button>
+       </div>
+       <div class="col-md-12" *ngIf="punti === 30">
+           <p>Winner...</p>
+        <button class="btn btn-primary" (click)="reload()">Try Again</button>
+       </div>
+   </div>
+      
+</div>
+
+
